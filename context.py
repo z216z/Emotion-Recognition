@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 
-class ContextPath(nn.Module):
+class Context(nn.Module):
     def __init__(self):
-        super(ContextPath, self).__init__()
+        super(Context, self).__init__()
         
         # Convolutional block 1
         self.conv_block1 = nn.Sequential(
