@@ -2,8 +2,9 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 from PIL import Image
+from model import model
 
-class EmotionBodyDataset(Dataset):
+class Dataset(Dataset):
     def __init__(self, image_paths, annotation_paths):
         self.image_paths = image_paths
         self.annotation_paths = annotation_paths
@@ -63,15 +64,15 @@ def train_model(model, train_loader, optimizer, criterion, device):
         print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, i+1, total_step, loss.item()))
 
 if __name__ == '__main__':
-    image_paths = [...]  # List of image paths
-    annotation_paths = [...]  # List of annotation paths
+    image_paths =   # List of image paths
+    annotation_paths =   # List of annotation paths
 
     # Initialize dataset and dataloader
-    dataset = EmotionBodyDataset(image_paths, annotation_paths)
+    dataset = Dataset(image_paths, annotation_paths)
     dataloader = DataLoader(dataset, batch_size=16, shuffle=True, num_workers=4)
 
     # Initialize model, optimizer, and criterion
-    model = EmotionBodyEncoder(num_classes=3)
+    model = model()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     criterion = nn.MSELoss()
 
@@ -84,3 +85,4 @@ if __name__ == '__main__':
     total_step = len(dataloader)
     for epoch in range(num_epochs):
         train_model(model, dataloader, optimizer, criterion, device)
+
